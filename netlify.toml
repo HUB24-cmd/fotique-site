@@ -1,0 +1,9 @@
+# Plain static site: no build step, publish the repository root.
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
