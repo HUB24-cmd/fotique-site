@@ -273,7 +273,11 @@ details p{color:var(--muted);margin-top:.6rem}
 /* contact */
 .contact{background:var(--accent);color:var(--accent-ink);border-radius:calc(var(--r) + 8px);padding:2.6rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center}
 .contact>div{min-width:0}
-.avatar{width:5.5rem;height:5.5rem;border-radius:50%;background:var(--accent-ink);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.8rem}
+.team{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.avatars{display:flex}
+.avatars .avatar+.avatar{margin-left:-1.1rem}
+.team-names{font-weight:800;font-size:.95rem;white-space:nowrap}
+.avatar{border:3px solid var(--accent);width:5.5rem;height:5.5rem;border-radius:50%;background:var(--accent-ink);color:var(--accent);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.8rem}
 .contact p{opacity:.9;margin-top:.4rem}
 .contact .lines{display:flex;flex-direction:column;gap:.35rem;font-weight:800;margin-top:.8rem}
 .contact .btn.light{background:var(--accent-ink);color:var(--accent);border:0}
@@ -414,6 +418,7 @@ section.night .checks svg{color:#ff8fa3}
 .ai-form textarea:focus{border-color:var(--accent);outline:none}
 .ai-foot{padding:0 1.2rem .9rem;display:flex;justify-content:space-between;gap:.6rem;font-size:.8rem;color:var(--muted)}
 
+@media (max-width:900px){.team{align-items:flex-start}}
 @media (max-width:900px){
   .hero .in,.split,.faq{grid-template-columns:1fr}
   .collage{min-height:340px}
@@ -642,7 +647,7 @@ section.night .checks svg{color:#ff8fa3}
 
 <div class="in" id="contact">
   <div class="contact">
-    <div class="avatar">TJ</div>
+    <div class="team"><div class="avatars"><span class="avatar">TJ</span><span class="avatar">B</span></div><span class="team-names">TJ en Bella</span></div>
     <div>
       <h2 data-c="contactTitle">Nog vragen?</h2>
       <p data-c="contactText">We denken graag mee over jullie feest, ook als je nog niet precies weet wat je wilt.</p>
@@ -707,7 +712,7 @@ const STATIC_EN={
 "Kies je datum":"Choose your date","beschikbaar (stipjes = vrije booths)":"available (dots = free booths)","volgeboekt":"fully booked","Kies je pakket":"Choose your package","Nog iets erbij?":"Anything else?","Jouw gegevens":"Your details","Naam":"Name","E-mail":"Email","Telefoon":"Phone","Soort event":"Type of event","Zakelijk event":"Corporate event","Anders":"Other","Locatie (plaats)":"Location (town)","Starttijd booth":"Booth start time","Opmerkingen":"Comments",
 "Veelgestelde vragen":"Frequently asked questions","Goed om te weten":"Good to know","Staat je vraag er niet tussen? App ons gewoon.":"Question not here? Just message us.","WhatsApp en bellen":"WhatsApp and calls","App ons":"Message us",
 "Photobooth en 360° videobooth huren voor bruiloften, verjaardagen en bedrijfsfeesten in de Randstad.":"Photo booth and 360° video booth hire for weddings, birthdays and company parties in the Randstad.","Algemeen":"General","Fotostrip op maat":"Custom photo strip","Werkgebied":"Service area","Den Haag":"The Hague","WhatsApp ons":"WhatsApp us",
-"Hoofdmenu":"Main menu","Witte Fotique-photobooth tussen rozen en champagneglazen op een bruiloft":"White Fotique photo booth among roses and champagne glasses at a wedding","Voorbeeld van jouw fotostrip":"Preview of your photo strip","5 sterren":"5 stars","Vorige maand":"Previous month","Volgende maand":"Next month","bijv. Den Haag":"e.g. The Hague","Thema, kleuren, wensen voor de fotostrip…":"Theme, colours, wishes for the photo strip…","Taal":"Language","© 2026 Fotique · Website door":"© 2026 Fotique · Website by","Photobooth + 360°":"Photo booth + 360°","Soort booth":"Type of booth","Wat wil je boeken?":"What would you like to book?","360°":"360°","Photobooth":"Photo booth","Fotostrip in 8 seconden":"Photo strip in 8 seconds","360° videobooth":"360° video booth","Slow-motion video":"Slow-motion video","Nieuw":"New","Boek de 360° booth":"Book the 360° booth","Echte video's van onze events · tik op 🔇 voor geluid":"Real videos from our events · tap 🔇 for sound","360° videobooth in actie":"360° video booth in action","360° videobooth met ringlamp op een verlichte dansvloer":"360° video booth with ring light on a lit dance floor","Video's van de 360° videobooth":"Videos from the 360° video booth","Geluid aan":"Sound on"
+"Hoofdmenu":"Main menu","Witte Fotique-photobooth tussen rozen en champagneglazen op een bruiloft":"White Fotique photo booth among roses and champagne glasses at a wedding","Voorbeeld van jouw fotostrip":"Preview of your photo strip","5 sterren":"5 stars","Vorige maand":"Previous month","Volgende maand":"Next month","bijv. Den Haag":"e.g. The Hague","Thema, kleuren, wensen voor de fotostrip…":"Theme, colours, wishes for the photo strip…","Taal":"Language","TJ en Bella":"TJ and Bella","© 2026 Fotique · Website door":"© 2026 Fotique · Website by","Photobooth + 360°":"Photo booth + 360°","Soort booth":"Type of booth","Wat wil je boeken?":"What would you like to book?","360°":"360°","Photobooth":"Photo booth","Fotostrip in 8 seconden":"Photo strip in 8 seconds","360° videobooth":"360° video booth","Slow-motion video":"Slow-motion video","Nieuw":"New","Boek de 360° booth":"Book the 360° booth","Echte video's van onze events · tik op 🔇 voor geluid":"Real videos from our events · tap 🔇 for sound","360° videobooth in actie":"360° video booth in action","360° videobooth met ringlamp op een verlichte dansvloer":"360° video booth with ring light on a lit dance floor","Video's van de 360° videobooth":"Videos from the 360° video booth","Geluid aan":"Sound on"
 };
 const T_EN={
 "Onze tip":"Our pick","incl. btw":"incl. VAT","uur verhuur":"hours rental","Photobooth":"Photo booth","360° videobooth":"360° video booth","Photobooth + 360°":"Photo booth + 360°","1. Kies je photobooth":"1. Choose your photo booth","2. Kies je 360° videobooth":"2. Choose your 360° video booth","Jouw combinatie":"Your combination","Totaal incl. btw":"Total incl. VAT","Twee booths op één feest: gasten maken foto's én 360° video's.":"Two booths at one party: guests make photos and 360° videos.","Boek deze combinatie":"Book this combination","Wat wil je boeken?":"What would you like to book?","Photobooth-pakket":"Photo booth package","360°-pakket":"360° package","Waarvan btw 21%":"Of which VAT 21%","Beschikbaarheid photobooth":"Availability photo booth","Beschikbaarheid 360° videobooth":"Availability 360° video booth","Beschikbaarheid photobooth + 360°":"Availability photo booth + 360°","Kies dit pakket":"Choose this package","vanaf":"from","excl. btw":"excl. VAT","Kies":"Choose","uur":"hours",
