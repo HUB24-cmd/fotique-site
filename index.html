@@ -802,7 +802,7 @@ function ensurePicks(){
 }
 function PHONE(){return (saved[LANG]||saved.nl).phone;}
 function WA_NUM(){return "31"+PHONE().replace(/\D/g,"").replace(/^0/,"");}
-const CODES={FLYER10:{pct:10,until:"2027-03-31"}};
+const CODES={FLYER10:{pct:10,until:"2026-12-14"}};
 function activeCode(){const el=document.getElementById("f-code");if(!el)return null;const c=el.value.trim().toUpperCase();const d=CODES[c];if(!d)return null;if(key(new Date())>d.until)return null;return {code:c,pct:d.pct};}
 function vatLabel(p){return t(p.vat==="incl"?"incl. btw":"excl. btw");}
 function packCard(p,i){
