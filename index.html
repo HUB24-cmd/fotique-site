@@ -241,6 +241,9 @@ legend span{width:1.9rem;height:1.9rem;border-radius:50%;background:var(--accent
 .rlines{display:flex;flex-direction:column;gap:.5rem;font-size:.95rem;border-top:2px dashed var(--line);border-bottom:2px dashed var(--line);padding-block:1rem}
 .total{display:flex;justify-content:space-between;align-items:baseline}
 .total b{font-family:var(--display);font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums}
+.code-msg{font-size:.85rem;font-weight:800;min-height:1.2em}
+.code-msg.ok{color:var(--ok)}
+.code-msg.no{color:var(--accent)}
 .topay{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-top:2px solid var(--line);padding-top:.6rem;font-weight:800}
 .topay b{font-family:var(--display);font-size:1.3rem;font-variant-numeric:tabular-nums}
 .vat{font-size:.84rem;color:var(--muted)}
@@ -621,6 +624,7 @@ section.night .checks svg{color:#ff8fa3}
           <div class="field"><label for="f-place">Locatie (plaats)</label><input id="f-place" placeholder="bijv. Den Haag"></div>
           <div class="field"><label for="f-start">Starttijd booth</label><input id="f-start" type="time" value="20:00"></div>
         </div>
+        <div class="field"><label for="f-code">Kortingscode</label><input id="f-code" autocomplete="off" placeholder="bijv. FLYER10" style="text-transform:uppercase"><span class="code-msg" id="code-msg" aria-live="polite"></span></div>
         <div class="field"><label for="f-note">Opmerkingen</label><textarea id="f-note" placeholder="Thema, kleuren, wensen voor de fotostrip…"></textarea></div>
       </fieldset>
       <p class="err" id="err" role="alert"></p>
@@ -714,7 +718,7 @@ const STATIC_EN={
 "Kies je datum":"Choose your date","beschikbaar (stipjes = vrije booths)":"available (dots = free booths)","volgeboekt":"fully booked","Kies je pakket":"Choose your package","Nog iets erbij?":"Anything else?","Jouw gegevens":"Your details","Naam":"Name","E-mail":"Email","Telefoon":"Phone","Soort event":"Type of event","Zakelijk event":"Corporate event","Anders":"Other","Locatie (plaats)":"Location (town)","Starttijd booth":"Booth start time","Opmerkingen":"Comments",
 "Veelgestelde vragen":"Frequently asked questions","Goed om te weten":"Good to know","Staat je vraag er niet tussen? App ons gewoon.":"Question not here? Just message us.","WhatsApp en bellen":"WhatsApp and calls","App ons":"Message us",
 "Photobooth en 360° videobooth huren voor bruiloften, verjaardagen en bedrijfsfeesten in de Randstad.":"Photo booth and 360° video booth hire for weddings, birthdays and company parties in the Randstad.","Algemeen":"General","Fotostrip op maat":"Custom photo strip","Werkgebied":"Service area","Den Haag":"The Hague","WhatsApp ons":"WhatsApp us",
-"Hoofdmenu":"Main menu","Witte Fotique-photobooth tussen rozen en champagneglazen op een bruiloft":"White Fotique photo booth among roses and champagne glasses at a wedding","Voorbeeld van jouw fotostrip":"Preview of your photo strip","5 sterren":"5 stars","Vorige maand":"Previous month","Volgende maand":"Next month","bijv. Den Haag":"e.g. The Hague","Thema, kleuren, wensen voor de fotostrip…":"Theme, colours, wishes for the photo strip…","Taal":"Language","TJ en Bella":"TJ and Bella","© 2026 Fotique · Website door":"© 2026 Fotique · Website by","Photobooth + 360°":"Photo booth + 360°","Soort booth":"Type of booth","Wat wil je boeken?":"What would you like to book?","360°":"360°","Photobooth":"Photo booth","Fotostrip in 8 seconden":"Photo strip in 8 seconds","360° videobooth":"360° video booth","Slow-motion video":"Slow-motion video","Nieuw":"New","Boek de 360° booth":"Book the 360° booth","Echte video's van onze events · tik op 🔇 voor geluid":"Real videos from our events · tap 🔇 for sound","360° videobooth in actie":"360° video booth in action","360° videobooth met ringlamp op een verlichte dansvloer":"360° video booth with ring light on a lit dance floor","Video's van de 360° videobooth":"Videos from the 360° video booth","Geluid aan":"Sound on"
+"Hoofdmenu":"Main menu","Witte Fotique-photobooth tussen rozen en champagneglazen op een bruiloft":"White Fotique photo booth among roses and champagne glasses at a wedding","Voorbeeld van jouw fotostrip":"Preview of your photo strip","5 sterren":"5 stars","Vorige maand":"Previous month","Volgende maand":"Next month","bijv. Den Haag":"e.g. The Hague","Thema, kleuren, wensen voor de fotostrip…":"Theme, colours, wishes for the photo strip…","Taal":"Language","Kortingscode":"Discount code","bijv. FLYER10":"e.g. FLYER10","TJ en Bella":"TJ and Bella","© 2026 Fotique · Website door":"© 2026 Fotique · Website by","Photobooth + 360°":"Photo booth + 360°","Soort booth":"Type of booth","Wat wil je boeken?":"What would you like to book?","360°":"360°","Photobooth":"Photo booth","Fotostrip in 8 seconden":"Photo strip in 8 seconds","360° videobooth":"360° video booth","Slow-motion video":"Slow-motion video","Nieuw":"New","Boek de 360° booth":"Book the 360° booth","Echte video's van onze events · tik op 🔇 voor geluid":"Real videos from our events · tap 🔇 for sound","360° videobooth in actie":"360° video booth in action","360° videobooth met ringlamp op een verlichte dansvloer":"360° video booth with ring light on a lit dance floor","Video's van de 360° videobooth":"Videos from the 360° video booth","Geluid aan":"Sound on"
 };
 const T_EN={
 "Onze tip":"Our pick","incl. btw":"incl. VAT","uur verhuur":"hours rental","Photobooth":"Photo booth","360° videobooth":"360° video booth","Photobooth + 360°":"Photo booth + 360°","1. Kies je photobooth":"1. Choose your photo booth","2. Kies je 360° videobooth":"2. Choose your 360° video booth","Jouw combinatie":"Your combination","Totaal incl. btw":"Total incl. VAT","Totaal excl. btw":"Total excl. VAT","21% btw":"21% VAT","Te betalen incl. btw":"To pay incl. VAT","Twee booths op één feest: gasten maken foto's én 360° video's.":"Two booths at one party: guests make photos and 360° videos.","Boek deze combinatie":"Book this combination","Wat wil je boeken?":"What would you like to book?","Photobooth-pakket":"Photo booth package","360°-pakket":"360° package","Waarvan btw 21%":"Of which VAT 21%","Beschikbaarheid photobooth":"Availability photo booth","Beschikbaarheid 360° videobooth":"Availability 360° video booth","Beschikbaarheid photobooth + 360°":"Availability photo booth + 360°","Kies dit pakket":"Choose this package","vanaf":"from","excl. btw":"excl. VAT","Kies":"Choose","uur":"hours",
@@ -731,7 +735,7 @@ const T_EN={
 "Kies een afbeelding (jpg, png of heic omgezet naar jpg).":"Choose an image (jpg or png).","kon niet worden geopend.":"could not be opened.","Er passen 3 foto's op een strip. Verwijder er een om te wisselen.":"A strip holds 3 photos. Remove one to swap.",
 "Dit bestand kon niet worden geopend.":"This file could not be opened.","Toegevoegd aan je aanvraag. Stuur je logo en foto's na bevestiging gerust via WhatsApp.":"Added to your booking. Feel free to send your logo and photos via WhatsApp after confirmation.",
 "Opgeslagen.":"Saved.","Downloaden lukt hier niet. Maak anders een screenshot van het voorbeeld.":"Downloading isn't possible here. You can take a screenshot of the preview instead.",
-"Demo":"Demo","Bijna klaar!":"Almost done!","WhatsApp is geopend met je aanvraag. Verstuur het bericht om je aanvraag af te ronden. We reageren binnen een werkdag.":"WhatsApp has opened with your request. Send the message to complete your request. We reply within one working day.","Opende WhatsApp niet? Stuur je aanvraag dan naar":"WhatsApp didn't open? Send your request to","Verstuur aanvraag via WhatsApp":"Send request via WhatsApp","We bevestigen de beschikbaarheid binnen een werkdag via WhatsApp.":"We confirm availability within one working day via WhatsApp.","Lees meer":"Read more","Minder tonen":"Show less","Geluid aan":"Sound on","Geluid uit":"Sound off","Live beschikbaarheid":"Live availability"
+"Demo":"Demo","Korting":"Discount","Korting toegepast:":"Discount applied:","Deze code kennen we niet, of hij is verlopen.":"We don't recognise this code, or it has expired.","Bijna klaar!":"Almost done!","WhatsApp is geopend met je aanvraag. Verstuur het bericht om je aanvraag af te ronden. We reageren binnen een werkdag.":"WhatsApp has opened with your request. Send the message to complete your request. We reply within one working day.","Opende WhatsApp niet? Stuur je aanvraag dan naar":"WhatsApp didn't open? Send your request to","Verstuur aanvraag via WhatsApp":"Send request via WhatsApp","We bevestigen de beschikbaarheid binnen een werkdag via WhatsApp.":"We confirm availability within one working day via WhatsApp.","Lees meer":"Read more","Minder tonen":"Show less","Geluid aan":"Sound on","Geluid uit":"Sound off","Live beschikbaarheid":"Live availability"
 };
 window.__t=s=>t(s);
 function t(s){return LANG==="en"&&T_EN[s]!==undefined?T_EN[s]:s;}
@@ -798,6 +802,8 @@ function ensurePicks(){
 }
 function PHONE(){return (saved[LANG]||saved.nl).phone;}
 function WA_NUM(){return "31"+PHONE().replace(/\D/g,"").replace(/^0/,"");}
+const CODES={FLYER10:{pct:10,until:"2027-03-31"}};
+function activeCode(){const el=document.getElementById("f-code");if(!el)return null;const c=el.value.trim().toUpperCase();const d=CODES[c];if(!d)return null;if(key(new Date())>d.until)return null;return {code:c,pct:d.pct};}
 function vatLabel(p){return t(p.vat==="incl"?"incl. btw":"excl. btw");}
 function packCard(p,i){
   const ck='<svg class="ic"><use href="#i-check"/></svg>';
@@ -881,6 +887,8 @@ function calc(){
   const ps=chosen.filter(Boolean);
   const lines=ps.map(p=>[t(CAT_LABEL[p.cat])+" "+p.name+" ("+p.hours+" "+t("uur")+")",excl(p)]);
   EXTRAS.forEach(e=>{if(state.extras.has(e.id))lines.push([e.name,e.price]);});
+  const code=activeCode();
+  if(code){const base=lines.reduce((a,l)=>a+l[1],0);lines.push([t("Korting")+" "+code.code+" (−"+code.pct+"%)",-Math.round(base*code.pct)/100]);}
   const sub=Math.round(lines.reduce((a,l)=>a+l[1],0)*100)/100, vat=Math.round(sub*VAT*100)/100;
   return {ps,lines,sub,vat,total:sub+vat,nPacks:ps.length};
 }
@@ -895,7 +903,7 @@ function renderReceipt(){
   r.innerHTML=`<p class="label">${t("Jouw aanvraag")}</p>
     <div class="rline"><span>${t("Datum")}</span><b>${state.date?niceDate(state.date):t("kies een datum")}</b></div>
     ${state.kind==="v360"?"":state.design?`<div class="design-line"><span>${t("Fotostrip")}: <b>${esc(t(state.design.stijl))}</b>, “${esc(state.design.tekst)}”</span><button type="button" class="linkbtn" id="design-x">${t("wis")}</button></div>`:`<a class="linkbtn" href="#fotostrip">${t("Ontwerp eerst je fotostrip (optioneel)")}</a>`}
-    <div class="rlines">${c.lines.map(l=>`<div class="rline"><span>${esc(l[0])}</span><span>${eur(l[1])}</span></div>`).join("")}</div>
+    <div class="rlines">${c.lines.map(l=>`<div class="rline"><span>${esc(l[0])}</span><span>${l[1]<0?"− "+eur(-l[1]):eur(l[1])}</span></div>`).join("")}</div>
     <div class="total"><span>${t("Totaal excl. btw")}</span><b>${eur(c.sub)}</b></div>
     <div class="rline vat"><span>+ ${t("21% btw")}</span><span>${eur(c.vat)}</span></div>
     <div class="topay"><span>${t("Te betalen incl. btw")}</span><b>${eur(c.total)}</b></div>
@@ -912,7 +920,7 @@ async function submit(){
   $("err").textContent="";
   const c=calc(), kind=state.kind;
   const nl=p=>(p.cat==="photo"?"Photobooth ":"360° ")+p.name+" ("+p.hours+" uur)";
-  const rec={...f,date:state.date,kind,pack:c.ps.map(nl).join(" + "),hours:Math.max(...c.ps.map(p=>p.hours)),extras:EXTRAS.filter(e=>state.extras.has(e.id)).map(e=>e.name),totalIncl:Math.round(c.total*100)/100,design:kind==="v360"?null:(state.design||null),lang:LANG,status:"nieuw",createdAt:new Date().toISOString()};
+  const rec={...f,code:(activeCode()||{}).code||"",date:state.date,kind,pack:c.ps.map(nl).join(" + "),hours:Math.max(...c.ps.map(p=>p.hours)),extras:EXTRAS.filter(e=>state.extras.has(e.id)).map(e=>e.name),totalIncl:Math.round(c.total*100)/100,design:kind==="v360"?null:(state.design||null),lang:LANG,status:"nieuw",createdAt:new Date().toISOString()};
   state.submitting=true;renderReceipt();
   try{
     if(mode==="static"){
@@ -922,6 +930,7 @@ async function submit(){
       L.push("Booth: "+rec.pack);
       if(rec.extras.length)L.push("Extra's: "+rec.extras.join(", "));
       if(rec.design)L.push("Fotostrip: "+rec.design.stijl+", \""+rec.design.tekst+"\" / "+rec.design.regel2);
+      const cd=activeCode();if(cd)L.push("Kortingscode: "+cd.code+" ("+cd.pct+"%)");
       L.push("Totaal: "+eur(c.total)+" incl. btw");L.push("");
       L.push("Soort event: "+f.type);L.push("Locatie: "+f.place);
       L.push("Naam: "+f.name);L.push("E-mail: "+f.email);if(f.phone)L.push("Telefoon: "+f.phone);
@@ -973,6 +982,9 @@ function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt
 $("prev").onclick=()=>{state.view=new Date(state.view.getFullYear(),state.view.getMonth()-1,1);renderCal();};
 $("next").onclick=()=>{state.view=new Date(state.view.getFullYear(),state.view.getMonth()+1,1);renderCal();};
 $("form").addEventListener("submit",e=>e.preventDefault());
+function codeFeedback(){const v=$("f-code").value.trim(),m=$("code-msg");if(!v){m.textContent="";m.className="code-msg";return;}const c=activeCode();m.className="code-msg "+(c?"ok":"no");m.textContent=c?t("Korting toegepast:")+" "+c.pct+"%":t("Deze code kennen we niet, of hij is verlopen.");}
+$("f-code").addEventListener("input",()=>{codeFeedback();renderReceipt();});
+try{const q=new URLSearchParams(location.search).get("code");if(q){$("f-code").value=q.toUpperCase().slice(0,20);setTimeout(()=>{codeFeedback();renderReceipt();},0);}}catch(e){}
 document.querySelectorAll("#pack-tabs [data-tab]").forEach((b,i,all)=>{b.onclick=()=>{state.tab=b.dataset.tab;renderPacks();};
   b.onkeydown=e=>{if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft")return;const n=all[(i+(e.key==="ArrowRight"?1:all.length-1))%all.length];state.tab=n.dataset.tab;renderPacks();n.focus();};});
 (function(){const t=new Date(today);t.setDate(t.getDate()+1);$("q-date").min=key(t);})();
