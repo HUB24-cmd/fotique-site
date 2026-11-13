@@ -672,6 +672,7 @@ section.night .checks svg{color:#ff8fa3}
   <div class="legal"><div class="in"><span>© 2026 Fotique · Website door <a href="https://clearally.app" target="_blank" rel="noopener">ClearAlly.app</a></span><span id="foot-mode"></span></div></div>
 </footer>
 
+<form name="aanvraag" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true"><input name="bot-field"><input name="naam"><input name="email"><input name="telefoon"><input name="soort_event"><input name="plaats"><input name="starttijd"><input name="datum"><input name="booth"><input name="extras"><input name="kortingscode"><input name="totaal"><input name="fotostrip"><input name="taal"><textarea name="opmerkingen"></textarea></form>
 <a class="wa wa-link" href="https://wa.me/31681634243" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg><span>WhatsApp ons</span></a>
 <button class="ai-fab" id="ai-fab" type="button" hidden><svg class="ic"><use href="#i-spark"/></svg>AI-assistent</button>
 <aside class="ai-panel" id="ai-panel" hidden aria-label="Website-assistent">
@@ -935,6 +936,8 @@ async function submit(){
       L.push("Soort event: "+f.type);L.push("Locatie: "+f.place);
       L.push("Naam: "+f.name);L.push("E-mail: "+f.email);if(f.phone)L.push("Telefoon: "+f.phone);
       if(f.note){L.push("");L.push("Opmerkingen: "+f.note);}
+      try{const cd2=activeCode();const body=new URLSearchParams({"form-name":"aanvraag",naam:f.name,email:f.email,telefoon:f.phone,soort_event:f.type,plaats:f.place,starttijd:f.start,datum:nlDate,booth:rec.pack,extras:rec.extras.join(", "),kortingscode:cd2?cd2.code:"",totaal:eur(c.total)+" incl. btw",fotostrip:rec.design?(rec.design.stijl+", "+rec.design.tekst+" / "+rec.design.regel2):"",opmerkingen:f.note,taal:LANG});
+        fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body.toString(),keepalive:true}).catch(()=>{});}catch(e){}
       const url="https://wa.me/"+WA_NUM()+"?text="+encodeURIComponent(L.join("\n"));
       const w=window.open(url,"_blank");if(w){try{w.opener=null;}catch(e){}}else location.href=url;
     }else if(mode==="live"){
